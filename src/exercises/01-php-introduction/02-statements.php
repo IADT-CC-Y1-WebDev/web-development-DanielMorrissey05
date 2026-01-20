@@ -27,6 +27,21 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $age = rand(0, 75);
+
+        echo "Age $age <br>";
+        if ($age <= 12){
+            echo "You are a child";
+        }
+        else if ($age <= 19){
+            echo "You are a teenager";
+        }
+        else if ($age <= 64){
+            echo "You are an adult";
+        }
+        else if ($age >= 65){
+            echo "You are a senior";
+        }
         ?>
     </div>
 
@@ -43,6 +58,38 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $day = rand(1, 7);
+
+        switch ($day) {
+        case(1):
+        echo "The day is Monday";
+        echo " It is a weekday";
+        break;
+        case(2):
+        echo "The day is Tuesday";
+        echo " It is a weekday";
+        break;
+        case(3):
+        echo "The day is Wednesday";
+        echo " It is a weekday";
+        break;
+        case(4):
+        echo "The day is Thursday";
+        echo " It is a weekday";
+        break;
+        case(5):
+        echo "The day is Friday";
+        echo " It is a weekday";
+        break;
+        case(6):
+        echo "The day is Saturday";
+        echo " It is the weekend";
+        break;
+        case(7):
+        echo"The day is Sunday";
+        echo " It is the weekend";
+        break;
+        }
         ?>
     </div>
 
@@ -58,6 +105,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $numbers = rand(1, 10);
+
+        echo "The result is $numbers";
+        for ($i = 0; $i < 10; $i++) {
+            $numbers = $numbers * 10;
+        }
         ?>
     </div>
 
@@ -73,6 +126,14 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $count = rand(1, 10);
+        echo "$count";
+        while ($count > 10) {
+            echo "$count";
+            $count = $count - 1;
+            echo "$count";
+        }
+        echo " Blast off!";
         ?>
     </div>
 
