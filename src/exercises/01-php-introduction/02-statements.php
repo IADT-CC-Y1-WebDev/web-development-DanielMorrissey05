@@ -127,11 +127,11 @@
         <?php
         // TODO: Write your solution here
         $count = rand(1, 10);
-        echo "$count";
-        while ($count > 10) {
-            echo "$count";
+        echo "Counting down from $count<br/>";
+        while ($count >= 0) {
+            echo "$count<br/>";
             $count = $count - 1;
-            echo "$count";
+            // echo "$count<br/>";
         }
         echo " Blast off!";
         ?>

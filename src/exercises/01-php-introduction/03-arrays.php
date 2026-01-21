@@ -47,6 +47,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $studentKeys = ["Name" => "Daniel", "ID" => "N00253379", "Course" => "Creative Computing","Grade" => "B"];
+
+        foreach ($studentKeys as $key => $value) {
+            echo $key . ": " , $value . "<br/>";
+        }
         ?>
     </div>
 
