@@ -32,6 +32,11 @@
         for ($i = 0; $i != count($movies); $i++) {
             echo "Movie " . ($i+1 . ": " . $movies[$i] . "<br/>");
         }
+        $movies = ["The Matrix", "Full Metal Jacket", "Scarface", "Goodfellas", "Sonic the Hedgehog"];
+
+        for ($i = 0; $i != count($movies); $i++) {
+            echo "Movie " . ($i+1 . ": " . $movies[$i] . "<br/>");
+        }
         ?>
     </div>
 
