@@ -27,6 +27,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $movies = ["The Matrix", "Full Metal Jacket", "Scarface", "Goodfellas", "Sonic the Hedgehog"];
+
+        for ($i = 0; $i != count($movies); $i++) {
+            echo "Movie " . ($i+1 . ": " . $movies[$i] . "<br/>");
+        }
         ?>
     </div>
 
@@ -42,6 +47,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $studentKeys = ["Name" => "Daniel Morrissey", "ID" => "N00253379", "Course" => "Creative Computing","Grade" => "B"];
+
+        foreach ($studentKeys as $key => $value) {
+            echo $key . ": " , $value . "<br/>";
+        }
         ?>
     </div>
 
@@ -58,6 +68,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $countries = [
+            ["country" => "Ireland", "capital" => "Dublin"],
+            ["country" => "France", "capital" => "Paris"],
+            ["country" => "Germany", "capital" => "Berlin"],
+            ["country" => "Italy", "capital" => "Rome"],
+            ["country" => "Spain", "capital" => "Madrid"]
+        ];
+        
+        foreach ($countries as $country) {
+            $text = "The capital of {$country['country']} is {$country['capital']}";
+            print("<p>$text<p/>");
+        }
         ?>
     </div>
 
@@ -75,6 +97,29 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $menu = [
+            'Starters' => [
+                'Soup' => 5.50,
+                'Salad' => 6.00,
+                'Noodles' => 4.75
+            ],
+            'Main Courses' => [
+                'Sirloin' => 10.50,
+                'Cod' => 12.00,
+                'Lasagna' => 12.75
+            ]
+        ];
+
+        foreach ($menu as $category => $items) {
+            echo "$category";
+            echo "<ul>";
+
+        foreach ($items as $item => $price) {
+            echo "<li>$item - €" . number_format($price, 2) . "</li>";
+        }
+
+        echo "</ul>";
+        }
         ?>
     </div>
 
