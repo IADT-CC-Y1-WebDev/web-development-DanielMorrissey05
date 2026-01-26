@@ -127,11 +127,11 @@
         <?php
         // TODO: Write your solution here
         $count = rand(1, 10);
-        echo "$count";
+        echo "There are $count seconds left";
         while ($count > 10) {
-            echo "$count";
+            echo "There are...";
             $count = $count - 1;
-            echo "$count";
+            echo "... seconds left";
         }
         echo " Blast off!";
         ?>
