@@ -22,7 +22,8 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        require 'inc/navigation.php'
+        require 'inc/navigation.php';
+        require 'inc/navigation.php';
         ?>
     </div>
 
@@ -34,6 +35,7 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        require_once 'lib/utilities.php'
         ?>
     </div>
 
