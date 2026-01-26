@@ -47,7 +47,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        
+        if (isset($_GET['name'])) {
+            echo "Hello, " . $_GET['name'] . "!";
+        } else {
+            echo "Hello Guest";
+        }
         ?>
     </div>
 
@@ -65,6 +69,15 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $product = $_GET['product'] ?? null;
+        $quantity = $_GET['quantity'] ?? null;
+
+        if ($product && $quantity){
+            echo "You ordered $quantity $product " .($quantity == 5 ? "" : "s");
+        } else {
+            if (!$product) echo "Error: product missing.<br>";
+            if (!$quantity) echo "Error: quantity missing";
+        }
         ?>
     </div>
 

@@ -25,7 +25,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        ?>
+        function celsiusToFarenheit($celsius) {
+        return ($celsius * 9/5) + 32;
+    }
+    $first = 8;
+    $product = celsiusToFarenheit($first);
+    echo "<p>The Celsius is $first while the Farenheit is $product.</p>";
+    ?>
     </div>
 
     <!-- Exercise 2 -->
@@ -33,14 +39,21 @@
     <p>
         <strong>Task:</strong> 
         Create a function called calculateRectangleArea() that takes width
-         and height as parameters. It should return the area. If only one 
-         parameter is provided, assume it's a square (both dimensions equal).
+        and height as parameters. It should return the area. If only one 
+        parameter is provided, assume it's a square (both dimensions equal).
     </p>
 
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function calculateRectangleArea($width, $height) {
+        return $width * $height;
+        }
+        $width = 10;
+        $height = 5;
+        $area = calculateRectangleArea($width, $height);
+        echo "<p>The area is $area.</p>";
         ?>
     </div>
 
@@ -57,6 +70,15 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function checkEvenOdd($number){
+            if($number % 2 == 0) {
+                return "Even";
+            } else {
+                return "Odd";
+            }
+        }
+
+        echo checkEvenOdd(10);
         ?>
     </div>
 
@@ -73,6 +95,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function getArrayStats(array $nums){
+            return [min($nums), max($nums), array_sum($nums) / count($nums)];
+        }
+        [$minimum, $maximum, $average] = getArrayStats([5, 10, 15, 20, 25]);
+
+        echo "Min: $minimum, Max: $maximum, Avg: $average";
         ?>
     </div>
 
