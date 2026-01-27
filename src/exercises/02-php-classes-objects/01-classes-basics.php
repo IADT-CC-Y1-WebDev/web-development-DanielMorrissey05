@@ -35,8 +35,17 @@
         // Step 2: Require the file
         // require_once __DIR__ . '/classes/Student.php';
         // Step 3: Create a student and display their details
+        require_once 'classes/Student.php';
+
+        $student = new Student();
+
+        $student -> name = "Daniel";
+        $student -> number = "00253379";
+
+        echo "Name: " . $student->name . "<br>";
+        echo "Number: " . $student->number;
         ?>
-    </div>
+        </div>
 
     <!-- Exercise 2 -->
     <h2>Exercise 2: Add a Constructor</h2>
@@ -55,6 +64,16 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once 'classes/Student.php';
+
+        $student1 = new Student("Daniel", "N00253379");
+        $student2 = new Student("Alex", "N00461299");
+
+        echo "Name: " . $student1->name . "<br>";
+        echo "Number: " . $student1->number . "<br><br>";
+
+        echo "Name: " . $student2->name . "<br>";
+        echo "Number: " . $student2->number;
         ?>
     </div>
 
