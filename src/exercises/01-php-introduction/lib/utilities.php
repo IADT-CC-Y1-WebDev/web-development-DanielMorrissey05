@@ -1,6 +1,5 @@
 <?php
-functions truncate($text, $length): void{
-
+function truncate($text, $length){
 
 }
 
