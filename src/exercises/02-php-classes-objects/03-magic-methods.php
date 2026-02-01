@@ -33,6 +33,7 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
         ?>
     </div>
 
@@ -53,6 +54,10 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+
+        $student = new Student("Daniel", "N00253379");
+        echo $student;
         ?>
     </div>
 
@@ -74,6 +79,17 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+
+        $students = [
+            new student("Daniel", "N00253379"),
+            new student("Zach", "N00253380"),
+            new student("Robert", "N00253381")
+        ];
+
+        foreach ($students as $student) {
+            echo $student . "<br>";
+        }
         ?>
     </div>
 
@@ -100,6 +116,9 @@
         // echo "Setting student1 to null...<br>";
         // $student1 = null;
         // echo "Script ending...<br>";
+        require_once __DIR__ . '/classes/Student.php';
+
+        
         ?>
     </div>
 
