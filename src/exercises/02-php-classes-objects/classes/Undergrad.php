@@ -21,5 +21,9 @@ require_once __DIR__ . '/Student.php';
         public function getYear() {
             return $this->year;
             }
+
+        public function __toString() {
+            return "Undergrad: {$this->name} ({$this->number}), {$this->course}, Year {$this->year}"; 
+        }
     }
 ?>

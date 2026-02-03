@@ -33,6 +33,13 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        $student = new Student("Daniel Morrissey", "N00253379");
+        $undergrad = new Undergrad("Danny Mo", "N0032622", "Creative Computing", "Year 1");
+
+        echo $student . "<br>";
+        echo $undergrad;
         ?>
     </div>
 
@@ -61,6 +68,17 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Postgrad.php';
+
+        require_once __DIR__ . '/classes/Postgrad.php';
+
+        $postgrad = new Postgrad(
+            "Daniel Morrissey",
+            "N00253379",
+            "Dr. Morrissey",
+            "Game Design"
+        );
+
+        echo $postgrad;
         ?>
     </div>
 
