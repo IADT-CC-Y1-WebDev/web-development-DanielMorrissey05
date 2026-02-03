@@ -3,31 +3,23 @@
 require_once __DIR__ . '/Student.php';
 
     class Undergrad extends Student{
-        protected $name;
-        protected $number;
+        
         protected $course;
         protected $year;
 
         public function __construct($name, $number, $course, $year) {
-            
-            $this->name = $name;
-            $this->number = $number;
+
+            parent::__construct(name: $name, number: $number);
+            $this->course = $course;
+            $this->year = $year;
         }
 
-        public function getName() {
-            return $this->name;
+        public function getCourse() {
+            return $this->course;
             }
 
-        public function getNumber() {
-            return $this->number;
-            }
-
-            public function __toString(){
-                return "Student: {$this->name} ({$this->number})";
-            }
-
-            public function __destruct(){
-                echo "Undergrad: {$this->name} ";
+        public function getYear() {
+            return $this->year;
             }
     }
 ?>

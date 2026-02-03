@@ -38,6 +38,10 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        $u = new Undergrad(name: "Daniel", number: "N00253379", course: "Creative Computing", year: "1st");
+        echo "Name " . $u->getName();
         ?>
     </div>
 
@@ -59,6 +63,15 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        $student = new Undergrad("Daniel Morrissey", "N00253379", "Creative Computing", "1st Year");
+
+        echo "Name: " . $student->getName() . "<br>";
+        echo "Name: " . $student->getNumber() . "<br>";
+        echo "Name: " . $student->getCourse() . "<br>";
+        echo "Name: " . $student->getYear() . "<br>";
         ?>
     </div>
 
@@ -76,6 +89,22 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        function displayStudent($student) {
+            echo "Name: " . $student->getName() . "<br>";
+            echo "Student Number: " . $student->getNumber() . "<br>";
+            echo "Course: " . $student->getCourse() . "<br>";
+            echo "Year: " . $student->getYear() . "<br><br>";
+        }
+
+            $student1 = new Undergrad("Daniel Morrissey", "N00253379", "Creative Computing", "1st Year");
+            $student2 = new Undergrad("Zach Stynes", "N00841290", "English + Classics", "1st Year");
+            $student3 = new Undergrad("Robert Nixon", "N00678132", "Agricultural Science", "1st Year");
+
+            displayStudent($student1);
+            displayStudent($student2);
+            displayStudent($student3);
         ?>
     </div>
 
