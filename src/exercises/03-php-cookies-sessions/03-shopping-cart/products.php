@@ -6,6 +6,9 @@ require_once 'etc/config.php';
 // =============================================================================
 // Complete the TODO sections to implement a shopping cart using sessions.
 // =============================================================================
+if(session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // =============================================================================
 // Exercise 1: Start the session
@@ -24,6 +27,7 @@ new Product(4, 'Hat', 14.99, 'Baseball cap');
 // Exercise 2: Initialize the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+$cart = ShoppingCart::getInstance();
  
 // =============================================================================
 
@@ -36,6 +40,16 @@ new Product(4, 'Hat', 14.99, 'Baseball cap');
 // 4. Redirect back to products.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+if(isset($_GET['add'])) {
+    $id = (int)$_GET['add'];
+    $product = Product::findById($id);
+    if ($product !== null) {
+        $cart->add($product);
+    }
+    //Redirect to products.php
+    header("Location: products.php");
+    exit();
+}
 
 // =============================================================================
 
