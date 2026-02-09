@@ -71,10 +71,19 @@
         // Exercise 1: Display the visit count
         // ---------------------------------------------------------------------
         // TODO Exercise 1: Write your solution here
-        $visitCount = isset($_COOKIE['visit_count']) ? (int)$_COOKIE['visit_count'] : 0;
-        $visitCount++;
         $expiryTime = time() + (60 * 60 * 24 * 30);
-        setcookie('visit_count', $visitCount, $expiryTime, '/');
+
+        if(isset($_COOKIE['visitCounter'])){
+            $visitCount = (int)$_COOKIE['visitCount'];
+            echo "You have visited " . $visitCount . " Times";
+            $visitCount ++;
+        }
+        else{
+            echo "First Visit";
+            $visitCount = 1;
+        }
+
+        setcookie('visitCount', $visitCount, $expiryTime, '/');
         // =====================================================================
         ?>
     </div>

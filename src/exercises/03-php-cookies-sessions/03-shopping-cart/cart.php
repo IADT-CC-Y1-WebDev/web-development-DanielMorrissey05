@@ -34,7 +34,7 @@ $cart = ShoppingCart::getInstance();
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 if (isset($_GET['remove'])) {
-     $id = (int)$_GET['add'];
+    $id = (int)$_GET['add'];
     $product = Product::findById($id);
     if ($product !== null) {
         $cart->remove($id);
