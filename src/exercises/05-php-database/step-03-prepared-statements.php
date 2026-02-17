@@ -75,7 +75,7 @@ catch (PDOException $e) {
             // 1. Prepare: SELECT * FROM books WHERE author LIKE :search
             // 2. Execute with ['search' => '%George%']
             // 3. Loop through and display results
-            $author = "george";
+            $author = "George";
             $stmt = $db->prepare("SELECT * FROM books WHERE author LIKE :author");
             $stmt->execute(['author' => $author . "%"]);
             $book = $stmt->fetch();

@@ -47,6 +47,18 @@ catch (PDOException $e) {
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
             // 5. Fetch and display updated book
+            $stmt = $db->prepare("
+            UPDATE books
+            SET description = :description
+    WHERE id = :id
+");
+
+$stmt->execute([
+    'description' => 'Updated description text.',
+    'id' => 1
+]);
+
+echo "Updated " . $stmt->rowCount() . " row(s)";
             ?>
         </div>
     </div>

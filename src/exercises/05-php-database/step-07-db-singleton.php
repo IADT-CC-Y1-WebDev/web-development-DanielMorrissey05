@@ -35,6 +35,14 @@ require_once __DIR__ . '/lib/config.php';
             // 3. Display the count
             // 4. Get DB::getInstance() twice and compare with ===
             // 5. Display whether they are the same instance
+            $instance1 = DB::getInstance();
+            $instance2 = DB::getInstance(); 
+            
+            $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+            $stmt->execute(['id' => 1]);
+            $book = $stmt->fetch();
+
+            echo $book['title'];
             ?>
         </div>
     </div>
