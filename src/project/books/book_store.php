@@ -20,21 +20,23 @@ try {
     // Get form data
     $data = [
         'title' => $_POST['title'] ?? null,
-        'release_date' => $_POST['release_date'] ?? null,
-        'genre_id' => $_POST['genre_id'] ?? null,
-        'description' => $_POST['description'] ?? null,
-        'platform_ids' => $_POST['platform_ids'] ?? [],
-        'image' => $_FILES['image'] ?? null
+        'author' => $_POST['author'] ?? null,
+        'publisher_id' => $_POST['publisher_id'] ?? null,
+        'year' => $_POST['year'] ?? null,
+        'isbn' => $_POST['isbn'] ?? [],
+        'description' => $_POST['description'] ?? [],
+        'cover_filename' => $_FILES['cover_filename'] ?? null
     ];
 
     // Define validation rules
     $rules = [
         'title' => 'required|notempty|min:1|max:255',
-        'release_date' => 'required|notempty',
-        'genre_id' => 'required|integer',
-        'description' => 'required|notempty|min:10|max:5000',
-        'platform_ids' => 'required|array|min:1|max:10',
-        'image' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
+        'author' => 'required|notempty',
+        'publisher_id' => 'required|integer',
+        'year' => 'required|notempty|min:10|max:5000',
+        'isbn' => 'required|array|min:1|max:10',
+        'description' => 'required|array|min:1|max:10',
+        'cover_filename' => 'required|file|cover_filename|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)
@@ -50,36 +52,38 @@ try {
     }
 
     // All validation passed - now process and save
-    // Verify genre exists
-    $genre = Genre::findById($data['genre_id']);
-    if (!$genre) {
-        throw new Exception('Selected genre does not exist.');
+    // Verify publisher exists
+    $publisher = Publisher::findById($data['publisher_id']);
+    if (!$publisher) {
+        throw new Exception('Selected publisher does not exist.');
     }
 
-    // Process the uploaded image (validation already completed)
+    // Process the uploaded cover_filename (validation already completed)
     $uploader = new ImageUpload();
-    $imageFilename = $uploader->process($_FILES['image']);
+    $cover_filenameFilename = $uploader->process($_FILES['cover_filename']);
 
-    if (!$imageFilename) {
-        throw new Exception('Failed to process and save the image.');
+    if (!$cover_filenameFilename) {
+        throw new Exception('Failed to process and save the cover_filename.');
     }
 
     // Create new book instance
-    $book = new Game();
+    $book = new Book();
     $book->title = $data['title'];
-    $book->release_date = $data['release_date'];
-    $book->genre_id = $data['genre_id'];
+    $book->author = $data['author'];
+    $book->publisher_id = $data['publisher_id'];
+    $book->year = $data['year'];
+    $book->isbn = $data['isbn'];
     $book->description = $data['description'];
-    $book->image_filename = $imageFilename;
+    $book->cover_filename = $cover_filename;
 
     // Save to database
     $book->save();
-    // Create platform associations
-    if (!empty($data['platform_ids']) && is_array($data['platform_ids'])) {
-        foreach ($data['platform_ids'] as $platformId) {
-            // Verify platform exists before creating relationship
-            if (Platform::findById($platformId)) {
-                GamePlatform::create($book->id, $platformId);
+    // Create format associations
+    if (!empty($data['isbn']) && is_array($data['isbn'])) {
+        foreach ($data['isbn'] as $formatId) {
+            // Verify format exists before creating relationship
+            if (Format::findById($formatId)) {
+                BookFormat::create($book->id, $formatId);
             }
         }
     }
@@ -90,15 +94,15 @@ try {
     clearFormErrors();
 
     // Set success flash message
-    setFlashMessage('success', 'Game stored successfully.');
+    setFlashMessage('success', 'Book stored successfully.');
 
     // Redirect to book details page
     redirect('book_view.php?id=' . $book->id);
 }
 catch (Exception $e) {
-    // Error - clean up uploaded image
-    if (isset($imageFilename) && $imageFilename) {
-        $uploader->deleteImage($imageFilename);
+    // Error - clean up uploaded cover_filename
+    if (isset($cover_filenameFilename) && $cover_filenameFilename) {
+        $uploader->deleteImage($cover_filenameFilename);
     }
 
     // Set error flash message

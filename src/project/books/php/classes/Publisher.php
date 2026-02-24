@@ -4,7 +4,7 @@ class Publisher
 {
     // public properties for each database column
     public $id;
-    public $title;
+    public $name;
  
     // private $db property for database connection
     private $db;
@@ -16,7 +16,7 @@ class Publisher
         $this->db = DB::getInstance()->getConnection();
  
         $this->id = $data['id'] ?? null;
-        $this->title = $data['title'] ?? null;
+        $this->name = $data['name'] ?? null;
     }
 
     public static function findAll()
@@ -24,7 +24,7 @@ class Publisher
         // TODO: Implement this method
         $db = DB::getInstance()->getConnection();
  
-        $stmt = $db->prepare("SELECT * FROM publishers ORDER BY title");
+        $stmt = $db->prepare("SELECT * FROM publishers ORDER BY name");
         $stmt->execute();
  
         $publishers = [];
@@ -53,7 +53,7 @@ class Publisher
     {
         // TODO: Implement this method
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM publishers WHERE publisher_id = :publisher_id ORDER BY title");
+        $stmt = $db->prepare("SELECT * FROM publishers WHERE publisher_id = :publisher_id ORDER BY name");
         $stmt->execute(['publisher_id' => $publisherId]);
  
         $publishers = [];
@@ -70,22 +70,22 @@ class Publisher
         if ($this->id) {
             $stmt = $this->db->prepare("
                 UPDATE publishers
-                SET title = :title,
+                SET name = :name,
                 WHERE id = :id
             ");
  
             $params = [
-                'title' => $this->title,
+                'name' => $this->name,
                 'id'             => $this->id
             ];
         } else {
             $stmt = $this->db->prepare("
-                INSERT INTO publishers (title, author, publisher_id, year, isbn, description, cover_filename)
-                VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
+                INSERT INTO publishers (name, author, publisher_id, year, isbn, description, cover_filename)
+                VALUES (:name, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
             ");
  
             $params = [
-                'title' => $this->title,
+                'name' => $this->name,
             ];
         }
        
@@ -126,7 +126,7 @@ class Publisher
         // TODO: Implement this method
             return [
             'id' => $this->id,
-            'title'  => $this->title,
+            'name'  => $this->name,
         ];
     }
 }
