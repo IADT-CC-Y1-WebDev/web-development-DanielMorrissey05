@@ -33,9 +33,9 @@ try {
         'title' => 'required|notempty|min:1|max:255',
         'author' => 'required|notempty',
         'publisher_id' => 'required|integer',
-        'year' => 'required|notempty|min:10|max:5000',
+        'year' => 'required|notempty',
         'isbn' => 'required|array|min:1|max:10',
-        'description' => 'required|array|min:1|max:10',
+        'description' => 'required|min:1|max:10',
         'cover_filename' => 'required|file|cover_filename|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 

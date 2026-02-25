@@ -14,7 +14,7 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
-    $formats = Format::findByBook($book->id);
+    $format = Format::findByBook($book->id);
 
     $platformNames = [];
     foreach ($platforms as $platform) {
