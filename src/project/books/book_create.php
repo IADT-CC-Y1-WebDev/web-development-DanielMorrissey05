@@ -41,7 +41,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="author">Author:</label>
                         <div>
-                            <input type="author" id="author" name="author" value="<?= old('author') ?>" required>
+                            <input type="text" id="author" name="author" value="<?= old('author') ?>" required>
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
-                            <input type="number" id="isbn" name="isbn" min="1900" max="2099" step="1" value="<?= old('isbn') ?>" required>
+                            <input type="text" id="isbn" name="isbn" min="1900" max="2099" step="1" value="<?= old('isbn') ?>" required>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
@@ -86,21 +86,21 @@ catch (PDOException $e) {
                                 <div>
                                     <input type="checkbox" 
                                         id="format_<?= h($format->id) ?>" 
-                                        name="format_ids[]" 
+                                        name="format_id[]" 
                                         value="<?= h($format->id) ?>"
-                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
+                                        <?= chosen('format_id', $format->id) ? "checked" : "" ?>
                                         >
-                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                    <label for="format_id<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>
-                        <p><?= error('formats_ids') ?></p>
+                        <p><?= error('format_id') ?></p>
                     </div>
                     <div class="input">
-                        <label class="special" for="image">Image (required):</label>
+                        <label class="special" for="cover_filename">Image (required):</label>
                         <div>
-                            <input type="file" id="image" name="image" accept="image/*" required>
-                            <p><?= error('image') ?></p>
+                            <input type="file" id="cover_filename" name="cover_filename" accept="image/*" required>
+                            <p><?= error('cover_filename') ?></p>
                         </div>
                     </div>
                     <div class="input">

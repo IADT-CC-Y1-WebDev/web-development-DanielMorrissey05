@@ -23,8 +23,8 @@ try {
         'author' => $_POST['author'] ?? null,
         'publisher_id' => $_POST['publisher_id'] ?? null,
         'year' => $_POST['year'] ?? null,
-        'isbn' => $_POST['isbn'] ?? [],
-        'description' => $_POST['description'] ?? [],
+        'isbn' => $_POST['isbn'] ?? null,
+        'description' => $_POST['description'] ?? null,
         'cover_filename' => $_FILES['cover_filename'] ?? null
     ];
 
@@ -34,8 +34,8 @@ try {
         'author' => 'required|notempty',
         'publisher_id' => 'required|integer',
         'year' => 'required|notempty',
-        'isbn' => 'required|array|min:1|max:10',
-        'description' => 'required|min:1|max:10',
+        'isbn' => 'required|min:1|max:13',
+        'description' => 'required|min:1|max:1000',
         'cover_filename' => 'required|file|cover_filename|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
@@ -79,8 +79,8 @@ try {
     // Save to database
     $book->save();
     // Create format associations
-    if (!empty($data['isbn']) && is_array($data['isbn'])) {
-        foreach ($data['isbn'] as $formatId) {
+    if (!empty($data['format_id'])) {
+        foreach ($data['format_id'] as $formatId) {
             // Verify format exists before creating relationship
             if (Format::findById($formatId)) {
                 BookFormat::create($book->id, $formatId);

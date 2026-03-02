@@ -20,14 +20,14 @@ try {
         throw new Exception("book not found.");
     }
 
-    $bookisbn = isbn::findByBook($book->isbn);
+    $bookisbn = isbn::findByBookId($book->isbn);
     $bookisbnIds = [];
     foreach ($bookisbn as $isbn) {
         $bookisbnIds[] = $isbn->id;
     }
 
     $publishers = publisher::findAll();
-    $isbn = isbn::findAll();
+    $isbns = isbn::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());

@@ -14,11 +14,11 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
-    $format = Format::findByBook($book->id);
+    $format = Format::findByBookId($book->id);
 
-    $platformNames = [];
-    foreach ($platforms as $platform) {
-        $platformNames[] = htmlspecialchars($platform->name);
+    $formatNames = [];
+    foreach ($format as $format) {
+        $formatNames[] = htmlspecialchars($format->name);
     }
 } 
 catch (PDOException $e) {
@@ -55,7 +55,7 @@ catch (PDOException $e) {
                         <h2><?= htmlspecialchars($book->title) ?></h2>
                         <p>Release Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
-                        <p>Platforms: <?= implode(', ', $platformNames) ?></p>
+                        <p>Formats: <?= implode(', ', $formatNames) ?></p>
                     </div>
                 </div>
             </div>
