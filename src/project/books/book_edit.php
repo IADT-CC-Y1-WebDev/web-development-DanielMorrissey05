@@ -20,14 +20,7 @@ try {
         throw new Exception("book not found.");
     }
 
-    $bookisbn = isbn::findByBookId($book->isbn);
-    $bookisbnIds = [];
-    foreach ($bookisbn as $isbn) {
-        $bookisbnIds[] = $isbn->id;
-    }
-
     $publishers = publisher::findAll();
-    $isbns = isbn::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -93,23 +86,6 @@ catch (PDOException $e) {
                             <textarea id="description" name="description" required><?= old('description', $book->description) ?></textarea>
                             <p><?= error('description') ?></p>
                         </div>
-                    </div>
-                    <div class="input">
-                        <label class="special">isbns:</label>
-                        <div>
-                            <?php foreach ($isbns as $isbn) { ?>
-                                <div>
-                                    <input type="checkbox" 
-                                        id="isbn_<?= h($isbn->id) ?>" 
-                                        name="isbn_ids[]" 
-                                        value="<?= h($isbn->id) ?>"
-                                        <?= chosen('isbn_ids', $isbn->id, $bookisbnsIds) ? "checked" : "" ?>
-                                    >
-                                    <label for="isbn_<?= h($isbn->id) ?>"><?= h($isbn->name) ?></label>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <p><?= error('isbn_ids') ?></p>
                     </div>
                     <div><img src="covers/<?= $book->cover_filename ?>" /></div>
                     <div class="input">

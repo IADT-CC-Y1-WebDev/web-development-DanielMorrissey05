@@ -14,11 +14,11 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
-    $format = Format::findByBookId($book->id);
+    $formats = Format::findByBookId($book->id);
 
     $formatNames = [];
-    foreach ($format as $format) {
-        $formatNames[] = htmlspecialchars($format->name);
+    foreach ($formats as $format) {
+        $formatNames[] = htmlspecialchars($format->name ?? '');
     }
 } 
 catch (PDOException $e) {
@@ -42,7 +42,7 @@ catch (PDOException $e) {
             <div class="width-12">
                 <div class="hCard">
                     <div class="bottom-content">
-                        <img src="covers/<?= htmlspecialchars($book->cover_filename) ?>" />
+                        <img src="images/<?= htmlspecialchars($book->cover_filename) ?>" />
 
                         <div class="actions">
                             <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /

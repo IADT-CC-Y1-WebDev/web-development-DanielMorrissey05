@@ -30,7 +30,7 @@ catch (PDOException $e) {
                 <h1>Create Game</h1>
             </div>
             <div class="width-12">
-                <form action="game_store.php" method="POST" enctype="multipart/form-data">
+                <form action="game_store.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>

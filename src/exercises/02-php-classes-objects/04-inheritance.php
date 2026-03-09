@@ -99,8 +99,8 @@
         }
 
             $student1 = new Undergrad("Daniel Morrissey", "N00253379", "Creative Computing", "1st Year");
-            $student2 = new Undergrad("Zach Stynes", "N00841290", "English + Classics", "1st Year");
-            $student3 = new Undergrad("Robert Nixon", "N00678132", "Agricultural Science", "1st Year");
+            $student2 = new Undergrad("Zach Johnson", "N00841290", "English + Classics", "1st Year");
+            $student3 = new Undergrad("Robert O'Connell", "N00678132", "Agricultural Science", "1st Year");
 
             displayStudent($student1);
             displayStudent($student2);

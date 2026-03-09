@@ -36,7 +36,7 @@ try {
         'year' => 'required|notempty',
         'isbn' => 'required|min:1|max:13',
         'description' => 'required|min:1|max:1000',
-        'cover_filename' => 'required|file|cover_filename|mimes:jpg,jpeg,png|max_file_size:5242880'
+        'cover_filename' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)
@@ -74,7 +74,7 @@ try {
     $book->year = $data['year'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];
-    $book->cover_filename = $cover_filename;
+    $book->cover_filename = $imageFilename;
 
     // Save to database
     $book->save();
@@ -101,8 +101,8 @@ try {
 }
 catch (Exception $e) {
     // Error - clean up uploaded cover_filename
-    if (isset($cover_filenameFilename) && $cover_filenameFilename) {
-        $uploader->deleteImage($cover_filenameFilename);
+    if (isset($imageFilename) && $imageFilename) {
+        $uploader->deleteImage($imageFilename);
     }
 
     // Set error flash message

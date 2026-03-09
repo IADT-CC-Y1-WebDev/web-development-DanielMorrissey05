@@ -45,10 +45,10 @@ try {
         throw new Exception('book not found.');
     }
 
-    // Delete the associated image file if it exists
-    if ($book->image_filename) {
+    // Delete the associated cover file if it exists
+    if ($book->cover_filename) {
         $uploader = new ImageUpload();
-        $uploader->deleteImage($book->image_filename);
+        $uploader->deleteImage($book->cover_filename);
     }
     // Delete the book
     $book->delete();
