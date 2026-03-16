@@ -36,7 +36,7 @@ try {
         'year' => 'required|notempty',
         'isbn' => 'required|min:1|max:13',
         'description' => 'required|min:1|max:1000',
-        'cover_filename' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
+        'cover_filename' => 'required|file|cover|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)
@@ -60,9 +60,9 @@ try {
 
     // Process the uploaded cover_filename (validation already completed)
     $uploader = new ImageUpload();
-    $cover_filenameFilename = $uploader->process($_FILES['cover_filename']);
+    $coverFilename = $uploader->process($_FILES['cover_filename']);
 
-    if (!$cover_filenameFilename) {
+    if (!$coverFilename) {
         throw new Exception('Failed to process and save the cover_filename.');
     }
 
@@ -74,7 +74,8 @@ try {
     $book->year = $data['year'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];
-    $book->cover_filename = $imageFilename;
+    $book->format_id = $data['format_id'];
+    $book->cover_filename = $coverFilename;
 
     // Save to database
     $book->save();
@@ -101,8 +102,8 @@ try {
 }
 catch (Exception $e) {
     // Error - clean up uploaded cover_filename
-    if (isset($imageFilename) && $imageFilename) {
-        $uploader->deleteImage($imageFilename);
+    if (isset($coverFilename) && $coverFilename) {
+        $uploader->deleteImage($coverFilename);
     }
 
     // Set error flash message

@@ -36,7 +36,7 @@ function onSubmitForm(evt) {
     if (Object.keys(errors).length === 0) {
         console.log("There was no errors--the form can be submitted");
     }
-     else {
+    else {
         showFieldErrors()
     }
 }

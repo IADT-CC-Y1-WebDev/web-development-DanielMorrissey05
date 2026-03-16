@@ -65,10 +65,10 @@ try {
         throw new Exception('Selected publisher does not exist.');
     }
 
-    // Verify platforms exist
-    foreach ($data['isbn'] as $platformId) {
-        if (!Platform::findById($platformId)) {
-            throw new Exception('One or more selected platforms do not exist.');
+    // Verify format exist
+    foreach ($data['format_id'] as $formatId) {
+        if (!Formats::findById($formatId)) {
+            throw new Exception('One or more selected formats do not exist.');
         }
     }
 

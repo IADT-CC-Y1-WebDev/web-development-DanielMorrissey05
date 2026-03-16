@@ -68,7 +68,14 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="publisher_id">publisher:</label>
+                        <label class="special" for="isbn">ISBN:</label>
+                        <div>
+                            <input type="text" id="isbn" name="isbn" min="1900" max="2099" step="1" value="<?= old('isbn') ?>" required>
+                            <p><?= error('isbn') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <div>
                             <select id="publisher_id" name="publisher_id" required>
                                 <?php foreach ($publishers as $publisher) { ?>
