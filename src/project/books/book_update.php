@@ -26,6 +26,7 @@ try {
         'publisher_id' => $_POST['publisher_id'] ?? null,
         'description' => $_POST['description'] ?? null,
         'isbn' => $_POST['isbn'] ?? [],
+        'format_id' => $_POST['format_id'] ?? [],
         'cover' => $_FILES['cover'] ?? null
     ];
 
@@ -37,7 +38,8 @@ try {
         'year' => 'required|notempty',
         'publisher_id' => 'required|integer',
         'description' => 'required|notempty|min:10|max:5000',
-        'isbn' => 'required|array|min:1|max:10',
+        'isbn' => 'required|min:1|max:13',
+        'format_id' => 'required|array|min:1|max:10',
         'cover' => 'file|cover|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
     ];
 
@@ -74,12 +76,12 @@ try {
 
     // Process the uploaded cover (validation already completed)
     $coverFilename = null;
-    $uploader = new coverUpload();
-    if ($uploader->hasFile('cover')) {
+    $uploader = new ImageUpload();
+    if ($uploader->hasFile('cover_filename')) {
         // Delete old cover
         $uploader->deletecover($book->cover_filename);
         // Process new cover
-        $coverFilename = $uploader->process($_FILES['cover']);
+        $coverFilename = $uploader->process($_FILES['cover_filename']);
         // Check for processing errors
         if (!$coverFilename) {
             throw new Exception('Failed to process and save the cover.');
@@ -93,6 +95,7 @@ try {
     $book->publisher_id = $data['publisher_id'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];
+    $book->format_id = $data['format_id'];
     if ($coverFilename) {
         $book->cover_filename = $coverFilename;
     }
@@ -100,12 +103,13 @@ try {
     // Save to database
     $book->save();
 
-    // Delete existing platform associations
-    BookPlatform::deleteByBook($book->id);
-    // Create new platform associations
-    if (!empty($data['isbn']) && is_array($data['isbn'])) {
-        foreach ($data['isbn'] as $platformId) {
-            BookPlatform::create($book->id, $platformId);
+    // Delete existing format associations
+    BookFormat::deleteByBook($book->id);
+    
+    // Create new format associations
+    if (!empty($data['format_id']) && is_array($data['format_id'])) {
+        foreach ($data['format_id'] as $format_id) {
+            BookFormat::create($book->id, $format_id);
         }
     }
 

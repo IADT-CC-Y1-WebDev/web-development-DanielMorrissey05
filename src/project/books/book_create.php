@@ -85,7 +85,7 @@ catch (PDOException $e) {
                             <?php foreach ($formats as $format) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="format_<?= h($format->id) ?>" 
+                                        id="format_id<?= h($format->id) ?>" 
                                         name="format_id[]" 
                                         value="<?= h($format->id) ?>"
                                         <?= chosen('format_id', $format->id) ? "checked" : "" ?>
