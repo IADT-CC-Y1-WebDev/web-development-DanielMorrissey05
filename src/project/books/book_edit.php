@@ -6,6 +6,8 @@ require_once 'php/lib/utils.php';
 
 startSession();
 
+//dd($_SESSION);
+
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         throw new Exception('Invalid request method.');
@@ -20,7 +22,8 @@ try {
         throw new Exception("book not found.");
     }
 
-    $publishers = publisher::findAll();
+    $publishers = Publisher::findAll();
+    $formats = Format::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -46,6 +49,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <input type="hidden" name="id" value="<?= h($book->id) ?>">
                     </div>
+
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
@@ -53,6 +57,7 @@ catch (PDOException $e) {
                             <p><?= error('title') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="author">Author:</label>
                         <div>
@@ -60,6 +65,7 @@ catch (PDOException $e) {
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="year">Release Year:</label>
                         <div>
@@ -67,6 +73,7 @@ catch (PDOException $e) {
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
@@ -74,6 +81,7 @@ catch (PDOException $e) {
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="publisher_id">Publisher:</label>
                         <div>
@@ -87,6 +95,7 @@ catch (PDOException $e) {
                             <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -94,6 +103,25 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
+
+                    <div class="input">
+                        <label class="special">Formats:</label>
+                        <div>
+                            <?php foreach ($formats as $format) { ?>
+                                <div>
+                                    <input type="checkbox" 
+                                        id="format_id<?= h($format->id) ?>" 
+                                        name="format_id[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_id', $format->id) ? "checked" : "" ?>
+                                        >
+                                    <label for="format_id<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <p><?= error('format_id') ?></p>
+                    </div>
+
                     <div><img src="covers/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
                         <label class="special" for="cover">cover (optional):</label>
@@ -102,6 +130,7 @@ catch (PDOException $e) {
                             <p><?= error('cover') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <button class="button" type="submit">Update book</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
