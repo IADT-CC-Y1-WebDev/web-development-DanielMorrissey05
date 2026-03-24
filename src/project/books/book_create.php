@@ -38,6 +38,7 @@ catch (PDOException $e) {
                             <p><?= error('title') ?></p>
                         </div>
                     </div>
+                    
                     <div class="input">
                         <label class="special" for="author">Author:</label>
                         <div>
@@ -45,6 +46,7 @@ catch (PDOException $e) {
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="year">Release Year:</label>
                         <div>
@@ -52,6 +54,7 @@ catch (PDOException $e) {
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
@@ -59,6 +62,7 @@ catch (PDOException $e) {
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="publisher_id">Publisher:</label>
                         <div>
@@ -72,6 +76,7 @@ catch (PDOException $e) {
                             <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -79,6 +84,7 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
+
                     <div class="input">
                         <label class="special">Formats:</label>
                         <div>
@@ -96,6 +102,7 @@ catch (PDOException $e) {
                         </div>
                         <p><?= error('format_id') ?></p>
                     </div>
+
                     <div class="input">
                         <label class="special" for="cover_filename">Image (required):</label>
                         <div>

@@ -77,7 +77,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
-                            <input type="text" id="isbn" name="isbn" min="1900" max="2099" step="1" value="<?= old('isbn') ?>" required>
+                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>

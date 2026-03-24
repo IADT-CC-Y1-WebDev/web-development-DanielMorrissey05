@@ -25,7 +25,7 @@ try {
         'year' => $_POST['year'] ?? null,
         'publisher_id' => $_POST['publisher_id'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'isbn' => $_POST['isbn'] ?? [],
+        'isbn' => $_POST['isbn'] ?? null,
         'format_id' => $_POST['format_id'] ?? [],
         'cover' => $_FILES['cover'] ?? null
     ];
@@ -38,7 +38,7 @@ try {
         'year' => 'required|notempty',
         'publisher_id' => 'required|integer',
         'description' => 'required|notempty|min:10|max:5000',
-        'isbn' => 'required|min:1|max:13',
+        'isbn' => 'required|notempty|min:1|max:14',
         'format_id' => 'required|array|min:1|max:10',
         'cover' => 'file|cover|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
     ];
@@ -69,7 +69,7 @@ try {
 
     // Verify format exist
     foreach ($data['format_id'] as $formatId) {
-        if (!Formats::findById($formatId)) {
+        if (!Format::findById($formatId)) {
             throw new Exception('One or more selected formats do not exist.');
         }
     }
