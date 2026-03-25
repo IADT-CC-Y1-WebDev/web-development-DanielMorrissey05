@@ -6,8 +6,6 @@ require_once 'php/lib/utils.php';
 
 startSession();
 
-// dd($_SESSION);
-
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         throw new Exception('Invalid request method.');
