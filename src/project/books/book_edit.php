@@ -6,7 +6,7 @@ require_once 'php/lib/utils.php';
 
 startSession();
 
-//dd($_SESSION);
+// dd($_SESSION);
 
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -17,9 +17,14 @@ try {
     }
     $id = $_GET['id'];
 
-    $book = book::findById($id);
+    $book = Book::findById($id);
     if ($book === null) {
         throw new Exception("book not found.");
+    }
+    $bookFormats = Format::findByBookId($book->id);
+    $bookFormatIds = [];
+    foreach ($bookFormats as $f) {
+        $bookFormatIds[] = $f->id;
     }
 
     $publishers = Publisher::findAll();
@@ -69,7 +74,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="year">Release Year:</label>
                         <div>
-                            <input type="number" id="year" name="year" min="1900" max="2099" value="<?= old('year', $book->year) ?>" required>
+                            <input type="number" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
@@ -77,7 +82,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
-                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
+                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn', $book->isbn) ?>" required>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
@@ -113,7 +118,7 @@ catch (PDOException $e) {
                                         id="format_id<?= h($format->id) ?>" 
                                         name="format_id[]" 
                                         value="<?= h($format->id) ?>"
-                                        <?= chosen('format_id', $format->id) ? "checked" : "" ?>
+                                        <?= chosen('format_id', $format->id, $bookFormatIds) ? "checked" : "" ?>
                                         >
                                     <label for="format_id<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
@@ -122,7 +127,7 @@ catch (PDOException $e) {
                         <p><?= error('format_id') ?></p>
                     </div>
 
-                    <div><img src="covers/<?= $book->cover_filename ?>" /></div>
+                    <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
                         <label class="special" for="cover">cover (optional):</label>
                         <div>

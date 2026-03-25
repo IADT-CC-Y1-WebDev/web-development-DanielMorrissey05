@@ -26,7 +26,7 @@ try {
         'isbn' => $_POST['isbn'] ?? null,
         'description' => $_POST['description'] ?? null,
         'cover_filename' => $_FILES['cover_filename'] ?? null,
-        'format_id' => $_POST['format_id'] ?? null
+        'format_id' => $_POST['format_id'] ?? []
     ];
 
     // Define validation rules
