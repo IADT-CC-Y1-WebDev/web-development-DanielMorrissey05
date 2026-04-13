@@ -102,8 +102,9 @@ body {
 
 .header {
 	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
+    align-items: baseline;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
 }
 
 .button {
