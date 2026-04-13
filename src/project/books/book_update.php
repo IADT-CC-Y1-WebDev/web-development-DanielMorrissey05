@@ -76,10 +76,10 @@ try {
 
     // Process the uploaded cover (validation already completed)
     $coverFilename = null;
-    $uploader = new ImageUpload();
+    $uploader = new ImageUpload(__DIR__ . '/images/');
     if ($uploader->hasFile('cover_filename')) {
         // Delete old cover
-        $uploader->deletecover($book->cover_filename);
+        $uploader->deleteImage($book->cover_filename);
         // Process new cover
         $coverFilename = $uploader->process($_FILES['cover_filename']);
         // Check for processing errors
@@ -95,7 +95,7 @@ try {
     $book->publisher_id = $data['publisher_id'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];
-    $book->format_id = $data['format_id'];
+    // $book->format_id = $data['format_id'];
     if ($coverFilename) {
         $book->cover_filename = $coverFilename;
     }
@@ -127,7 +127,7 @@ try {
 catch (Exception $e) {
     // Error - clean up uploaded cover
     if ($coverFilename) {
-        $uploader->deletecover($coverFilename);
+        $uploader->deleteImage($coverFilename);
     }
 
     // Set error flash message

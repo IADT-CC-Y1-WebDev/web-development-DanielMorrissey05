@@ -34,11 +34,9 @@ catch (PDOException $e) {
     </head>
     <body>
         <div class="container">
-            <div class="width-12 header">
+            <div class="width-12">
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
-        </div>
-        <div class="container">
             <div class="width-12">
                 <div class="hCard">
                     <div class="bottom-content">
@@ -47,7 +45,7 @@ catch (PDOException $e) {
                         <div class="actions">
                             <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /
                             <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a> /
-                            <a href="index.php">Back</a>
+                            <a href="book_list.php">Back</a>
                         </div>
                     </div>
 

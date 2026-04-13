@@ -61,7 +61,7 @@ try {
     }
 
     // Process the uploaded cover_filename (validation already completed)
-    $uploader = new ImageUpload();
+    $uploader = new ImageUpload(__DIR__ . '/images/');
     $coverFilename = $uploader->process($_FILES['cover_filename']);
 
     if (!$coverFilename) {
@@ -76,7 +76,7 @@ try {
     $book->year = $data['year'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];
-    $book->format_id = $data['format_id'];
+    // $book->format_id = $data['format_id'];
     $book->cover_filename = $coverFilename;
 
     // Save to database
