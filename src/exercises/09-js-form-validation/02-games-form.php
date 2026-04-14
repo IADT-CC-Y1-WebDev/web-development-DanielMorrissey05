@@ -166,9 +166,9 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="image">Image (required):</label>
+            <label class="form-label" for="cover_filename">Image (required):</label>
             <div>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="cover_filename" name="cover_filename" accept="image/*">
                 <span id="image_error" class="error"></span>
             </div>
         </div>
