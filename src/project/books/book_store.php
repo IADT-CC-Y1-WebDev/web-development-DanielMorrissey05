@@ -22,7 +22,7 @@ try {
         'title' => $_POST['title'] ?? null,
         'author' => $_POST['author'] ?? null,
         'publisher_id' => $_POST['publisher_id'] ?? null,
-        'year' => $_POST['year'] ?? null,
+        'year' => $_POST['release_year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
         'description' => $_POST['description'] ?? null,
         'cover_filename' => $_FILES['cover_filename'] ?? null,

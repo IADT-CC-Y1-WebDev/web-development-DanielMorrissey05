@@ -12,7 +12,7 @@ let isbnInput = document.getElementById('isbn');
 let publisherIdInput = document.getElementById('publisher_id');
 let descriptionInput = document.getElementById('description');
 let formatIdsInput = document.getElementsByName('format_id[]');
-let imageInput = document.getElementById('image');
+let cover_filenameInput = document.getElementById('cover_filename');
 
 let titleError = document.getElementById('title_error');
 let authorError = document.getElementById('author_error');
@@ -21,7 +21,7 @@ let isbnError = document.getElementById('isbn_error');
 let publisherIdError = document.getElementById('publisher_id_error');
 let descriptionError = document.getElementById('description_error');
 let formatIdsError = document.getElementById('format_id_error');
-let imageError = document.getElementById('image_error');
+let cover_filenameError = document.getElementById('cover_filename_error');
 
 let errors = {};
 
@@ -57,7 +57,7 @@ function showFieldErrors() {
     publisherIdError.innerHTML = errors.publisher_id || '';
     descriptionError.innerHTML = errors.description || '';
     formatIdsError.innerHTML = errors.format_id || '';
-    imageError.innerHTML = errors.image || '';
+    cover_filenameError.innerHTML = errors.cover_filename || '';
 }
 
 function isRequired(value) {
@@ -125,17 +125,16 @@ function onSubmitForm(evt) {
         addError('format_id', 'Select at least one format.');
     }
 
-    //image
-    //if(imageInput.files.length === 0){
-        //addError('image', 'Image is required');
-    //}
+    //cover_filename
+    if(cover_filenameInput.files.length === 0){
+        addError('cover_filename', 'cover_filename is required');
+    }
 
     showFieldErrors();
     showErrorSummaryTop();
 
     if(Object.keys(errors).length === 0){
     bookForm.submit();
-    //bookForm.sybmit();
-    alert('Form data valid.')
+    //alert('Form data valid.')
     }
 }
