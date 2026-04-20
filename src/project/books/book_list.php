@@ -4,6 +4,7 @@ require_once 'php/lib/utils.php';
 
 try {
     $books = Book::findAll();
+    $publishers = Publisher::findAll();
 } catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
 }
@@ -28,7 +29,7 @@ try {
         </div>
         <?php if (!empty($books)) { ?>
             <div class="width-12 filters">
-                <form>
+                <form id="filters">
                     <div>
                         <label for="title_filter">Title:</label>
                         <input type="text" id="title_filter" name="title_filter">
@@ -62,9 +63,12 @@ try {
         <?php if (empty($books)) { ?>
             <p>No books found.</p>
         <?php } else { ?>
-            <div class="width-12 cards">
+            <div class="width-12 cards" id="book_cards">
                 <?php foreach ($books as $book) { ?>
-                    <div class="card">
+                    <div class="card" 
+                        data-title="<?= h($book->title) ?>"
+                        data-publisher="<?= h($book->publisher_id) ?>"
+                    >
                         <div class="top-content">
                             <h2>Title: <?= h($book->title) ?></h2>
                             <p>Release Year: <?= h($book->year) ?></p>
@@ -82,6 +86,8 @@ try {
             </div>
         <?php } ?>
     </div>
+
+    <script src="js/books-filter.js"></script>
 </body>
 
 </html>

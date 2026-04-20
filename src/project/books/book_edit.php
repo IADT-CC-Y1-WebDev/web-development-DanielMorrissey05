@@ -48,7 +48,7 @@ catch (PDOException $e) {
                 <h1>Edit book</h1>
             </div>
             <div class="width-12">
-                <form action="book_update.php" method="POST" enctype="multipart/form-data">
+                <form action="book_update.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <input type="hidden" name="id" value="<?= h($book->id) ?>">
                     </div>
@@ -141,6 +141,8 @@ catch (PDOException $e) {
                 </form>
             </div>
         </div>
+
+        <script src="js/books-edit-validation.js"></script>
     </body>
 </html>
 <?php

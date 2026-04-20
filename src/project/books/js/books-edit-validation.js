@@ -78,7 +78,7 @@ function onSubmitForm(evt) {
     errors = {};
 
     let titleMin = titleInput.minlength || 3;
-    let titleMax = titleInput.maxlength || 255;
+    let titleMax = titleInput.maxlength || 15;
     let descMin = descriptionInput.minlength || 10;``
     
     //title
