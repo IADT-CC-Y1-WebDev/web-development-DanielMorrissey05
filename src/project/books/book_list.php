@@ -5,6 +5,7 @@ require_once 'php/lib/utils.php';
 try {
     $books = Book::findAll();
     $publishers = Publisher::findAll();
+    $formats = Format::findAll();
 } catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
 }
@@ -64,10 +65,21 @@ try {
             <p>No books found.</p>
         <?php } else { ?>
             <div class="width-12 cards" id="book_cards">
-                <?php foreach ($books as $book) { ?>
+                <?php foreach ($books as $book) { 
+                    $format_ids = [];
+
+                    $formats = Format::findByBookId($book->id);
+                    foreach ($formats as $format) {
+                        $format_ids[] = $format->id;
+                    }
+
+                    // dd($format_ids);
+                    
+                    ?>
                     <div class="card" 
                         data-title="<?= h($book->title) ?>"
                         data-publisher="<?= h($book->publisher_id) ?>"
+                        data-format="<?= h(implode(',', $format_ids)) ?>"
                     >
                         <div class="top-content">
                             <h2>Title: <?= h($book->title) ?></h2>

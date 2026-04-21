@@ -31,7 +31,7 @@ try {
 
     // Define validation rules
     $rules = [
-        'title' => 'required|notempty|min:1|max:255',
+        'title' => 'required|notempty|min:1|max:15',
         'author' => 'required|notempty',
         'publisher_id' => 'required|integer',
         'year' => 'required|notempty',
