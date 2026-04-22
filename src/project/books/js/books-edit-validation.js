@@ -78,7 +78,7 @@ function onSubmitForm(evt) {
     errors = {};
 
     let titleMin = titleInput.minlength || 3;
-    let titleMax = titleInput.maxlength || 15;
+    let titleMax = titleInput.maxlength || 25;
     let descMin = descriptionInput.minlength || 10;``
     
     //title
@@ -126,9 +126,9 @@ function onSubmitForm(evt) {
     }
 
     //cover_filename
-    if(cover_filenameInput.files.length === 0){
-        addError('cover_filename', 'cover_filename is required');
-    }
+    // if(cover_filenameInput.files.length === 0){
+    //     addError('cover_filename', 'cover_filename is required');
+    // }
 
     showFieldErrors();
     showErrorSummaryTop();

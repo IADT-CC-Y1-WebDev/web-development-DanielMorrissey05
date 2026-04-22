@@ -22,7 +22,7 @@ try {
         'id' => $_POST['id'] ?? null,
         'title' => $_POST['title'] ?? null,
         'author' => $_POST['author'] ?? null,
-        'year' => $_POST['year'] ?? null,
+        'release_year' => $_POST['release_year'] ?? null,
         'publisher_id' => $_POST['publisher_id'] ?? null,
         'description' => $_POST['description'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
@@ -33,9 +33,9 @@ try {
     // Define validation rules
     $rules = [
         'id' => 'required|integer',
-        'title' => 'required|notempty|min:1|max:255',
+        'title' => 'required|notempty|min:1|max:25',
         'author' => 'required|notempty|min:1|max:255',
-        'year' => 'required|notempty',
+        'release_year' => 'required|notempty',
         'publisher_id' => 'required|integer',
         'description' => 'required|notempty|min:10|max:5000',
         'isbn' => 'required|notempty|min:1|max:13',
@@ -91,7 +91,7 @@ try {
     // Update the book instance
     $book->title = $data['title'];
     $book->author = $data['author'];
-    $book->year = $data['year'];
+    $book->year = $data['release_year'];
     $book->publisher_id = $data['publisher_id'];
     $book->isbn = $data['isbn'];
     $book->description = $data['description'];

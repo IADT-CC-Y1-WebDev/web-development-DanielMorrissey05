@@ -48,8 +48,9 @@ catch (PDOException $e) {
                 <h1>Edit book</h1>
             </div>
             <div class="width-12">
-                <form action="book_update.php" method="POST" enctype="multipart/form-data" novalidate>
-                    <div class="input">
+                <form id="book_form" action="book_update.php" method="POST" enctype="multipart/form-data" novalidate>
+                    <div id="error_summary_top" class="error-summary" style="display:none" role="alert"></div>
+                    <div class="input" >
                         <input type="hidden" name="id" value="<?= h($book->id) ?>">
                     </div>
 
@@ -57,6 +58,7 @@ catch (PDOException $e) {
                         <label class="special" for="title">Title:</label>
                         <div>
                             <input type="text" id="title" name="title" value="<?= old('title', $book->title) ?>" required>
+                            <span id='title_error'class="error"></span>
                             <p><?= error('title') ?></p>
                         </div>
                     </div>
@@ -65,15 +67,17 @@ catch (PDOException $e) {
                         <label class="special" for="author">Author:</label>
                         <div>
                             <input type="text" id="author" name="author" value="<?= old('author', $book->author) ?>" required>
+                            <span id='author_error'class="error"></span>
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
 
                     <div class="input">
-                        <label class="special" for="year">Release Year:</label>
+                        <label class="special" for="release_year">Release Year:</label>
                         <div>
-                            <input type="number" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
-                            <p><?= error('year') ?></p>
+                            <input type="number" id="release_year" name="release_year" value="<?= old('release_year', $book->year) ?>" required>
+                            <span id='release_year_error'class="error"></span>
+                            <p><?= error('release_year') ?></p>
                         </div>
                     </div>
 
@@ -81,6 +85,7 @@ catch (PDOException $e) {
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
                             <input type="text" id="isbn" name="isbn" value="<?= old('isbn', $book->isbn) ?>" required>
+                            <span id='isbn_error'class="error"></span>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
@@ -95,6 +100,7 @@ catch (PDOException $e) {
                                     </option>
                                 <?php } ?>
                             </select>
+                            <span id='publisher_id_error'class="error"></span>
                             <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
@@ -103,6 +109,7 @@ catch (PDOException $e) {
                         <label class="special" for="description">Description:</label>
                         <div>
                             <textarea id="description" name="description" required><?= old('description', $book->description) ?></textarea>
+                            <span id='description_error'class="error"></span>
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
@@ -122,27 +129,29 @@ catch (PDOException $e) {
                                 </div>
                             <?php } ?>
                         </div>
+                        <span id='format_id_error'class="error"></span>
                         <p><?= error('format_id') ?></p>
                     </div>
 
                     <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
-                        <label class="special" for="cover">cover (optional):</label>
+                        <label class="special" for="cover_filename">cover (optional):</label>
                         <div>
-                            <input type="file" id="cover" name="cover" accept="cover/*">
-                            <p><?= error('cover') ?></p>
+                            <input type="file" id="cover_filename" name="cover_filename" accept="image/*">
+                            <span id='cover_filename_error'class="error"></span>
+                            <p><?= error('cover_filename') ?></p>
                         </div>
                     </div>
 
                     <div class="input">
-                        <button class="button" type="submit">Update book</button>
+                        <button class="button" id="submit_btn" type="submit">Update book</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
                     </div>
                 </form>
             </div>
         </div>
 
-        <script src="js/books-edit-validation.js"></script>
+        <script src="js/books-edit-validation.js"></script> 
     </body>
 </html>
 <?php
