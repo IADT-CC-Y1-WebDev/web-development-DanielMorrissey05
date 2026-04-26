@@ -20,14 +20,9 @@ catch (PDOException $e) {
             <div class="width-12">
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
-            <div class="width-12 header">
-                <div class="button">
-                    <a href="book_create.php">Add New Book</a>
-                </div>
-            </div>
         </div>
         <div class="container">
-            <a href="book_list.php">books</a>
+            <a href="book_list.php">See Books</a>
         </div>
     </body>
 </html>
