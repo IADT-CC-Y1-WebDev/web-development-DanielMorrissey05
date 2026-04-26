@@ -36,6 +36,10 @@ try {
                         <input type="text" id="title_filter" name="title_filter">
                     </div>
                     <div>
+                        <label for="year_filter">Release Year:</label>
+                        <input type="text" id="year_filter" name="year_filter">
+                    </div>
+                    <div>
                         <label for="publisher_filter">Publisher:</label>
                         <select id="publisher_filter" name="publisher_filter">
                             <option value="">All Publishers</option>
@@ -78,6 +82,7 @@ try {
                     ?>
                     <div class="card" 
                         data-title="<?= h($book->title) ?>"
+                        data-year="<?= h($book->year) ?>"
                         data-publisher="<?= h($book->publisher_id) ?>"
                         data-format="<?= h(implode(',', $format_ids)) ?>"
                     >
